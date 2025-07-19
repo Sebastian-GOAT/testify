@@ -1,6 +1,6 @@
 {
   "name": "@sebastian-goat/testify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Test a TypeScript project with a simple setup.",
   "main": "dist/index.js",
   "scripts": {
