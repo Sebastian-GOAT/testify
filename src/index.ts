@@ -9,14 +9,24 @@ export function describe(name: string, callback: () => void): void {
     score.failed = 0;
 
     console.log(`Running test suite: ${name}`);
-    callback();
 
-    const { passed, failed } = score;
-    const total = passed + failed;
-    const percentage = parseInt((passed / total * 100).toFixed(2));
+    function showResults() {
+        const { passed, failed } = score;
+        const total = passed + failed;
+        const percentage = parseInt((passed / total * 100).toFixed(2));
 
-    console.log(`Test suite completed: ${name}`);
-    console.log(`Results: ${passed} / ${total} passed - ${percentage === 100 ? '✅' : '❌'} ${percentage}%`);
+        console.log(`Test suite completed: ${name}`);
+        console.log(`Results: ${passed} / ${total} passed - ${percentage === 100 ? '✅' : '❌'} ${percentage}%`);
+    }
+
+    const result: any = callback();
+
+    if (result instanceof Promise) {
+        result.then(showResults);
+        return;
+    }
+    
+    showResults();
 }
 
 export function test(name: string, callback: () => void): void {
@@ -103,22 +113,3 @@ export function expect(value: any) {
         }
     };
 }
-
-describe('Sample Test Suite', () => {
-    
-    test('Sample Test 1', () => {
-        const result = 5;
-        expect(result).toBe(5);
-    });
-
-    test('Sample Test 2', () => {
-        const result = { a: 1, b: 2 };
-        expect(result).toEqual({ a: 1, b: 2 });
-    });
-
-    test('Sample Test 3', () => {
-        const result = true;
-        expect(result).toBeTruthy();
-    });
-
-});
