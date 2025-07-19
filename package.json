@@ -1,0 +1,27 @@
+{
+  "name": "@sebastian-goat/testify",
+  "version": "0.0.1",
+  "description": "Test a TypeScript project with a simple setup.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "npm run build && cls && node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "sebastian-goat",
+  "license": "ISC",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
